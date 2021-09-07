@@ -32,7 +32,12 @@ import org.springframework.util.MultiValueMap;
 
 import java.util.*;
 
-
+/**
+ * Admin Service API 集合，包含 Admin Service 所有模块 API 的调用封装。
+ * 
+ * 每一个模块对应一个 API 的实现，以静态内部类的形式存在，
+ * 内部使用 restTemplate ，调用 Admin 服务对应的 API 接口。
+ */
 @Service
 public class AdminServiceAPI {
 

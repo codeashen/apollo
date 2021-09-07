@@ -22,12 +22,23 @@ import com.ctrip.framework.apollo.common.entity.App;
 
 import org.springframework.context.ApplicationEvent;
 
+/**
+ * App 创建事件，继承自 Spring 提供的 ApplicationEvent
+ */
 public class AppCreationEvent extends ApplicationEvent {
 
+  /**
+   * 构造方法，传入 App 对象
+   * @param source App 对象
+   */
   public AppCreationEvent(Object source) {
     super(source);
   }
 
+  /**
+   * 获得事件对应的 App 对象
+   * @return
+   */
   public App getApp() {
     Preconditions.checkState(source != null);
     return (App) this.source;

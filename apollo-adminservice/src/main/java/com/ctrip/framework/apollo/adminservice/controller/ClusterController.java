@@ -47,6 +47,7 @@ public class ClusterController {
   public ClusterDTO create(@PathVariable("appId") String appId,
                            @RequestParam(value = "autoCreatePrivateNamespace", defaultValue = "true") boolean autoCreatePrivateNamespace,
                            @Valid @RequestBody ClusterDTO dto) {
+    // 校验该 App 下是否已经存在这个 name 的集群
     Cluster entity = BeanUtils.transform(Cluster.class, dto);
     Cluster managedEntity = clusterService.findOne(appId, entity.getName());
     if (managedEntity != null) {
@@ -54,8 +55,10 @@ public class ClusterController {
     }
 
     if (autoCreatePrivateNamespace) {
+      // 保存 Cluster 对象，并创建其 Namespace
       entity = clusterService.saveWithInstanceOfAppNamespaces(entity);
     } else {
+      // 保存 Cluster 对象，不创建其 Namespace
       entity = clusterService.saveWithoutInstanceOfAppNamespaces(entity);
     }
 

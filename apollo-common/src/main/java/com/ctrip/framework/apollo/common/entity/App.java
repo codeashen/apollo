@@ -31,7 +31,9 @@ import javax.persistence.Table;
 @SQLDelete(sql = "Update App set isDeleted = 1 where id = ?")
 @Where(clause = "isDeleted = 0")
 public class App extends BaseEntity {
-
+  /**
+   * 应用名称
+   */
   @NotBlank(message = "Name cannot be blank")
   @Column(name = "Name", nullable = false)
   private String name;

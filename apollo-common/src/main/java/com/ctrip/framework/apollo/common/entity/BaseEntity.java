@@ -104,6 +104,9 @@ public abstract class BaseEntity {
     this.id = id;
   }
 
+  /**
+   * 保存前置方法
+   */
   @PrePersist
   protected void prePersist() {
     if (this.dataChangeCreatedTime == null) {
@@ -114,11 +117,17 @@ public abstract class BaseEntity {
     }
   }
 
+  /**
+   * 更新前置方法
+   */
   @PreUpdate
   protected void preUpdate() {
     this.dataChangeLastModifiedTime = new Date();
   }
 
+  /**
+   * 删除前置方法
+   */
   @PreRemove
   protected void preRemove() {
     this.dataChangeLastModifiedTime = new Date();
